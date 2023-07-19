@@ -44,7 +44,13 @@ module.exports = {
         },
         {
           from: './src/php',
-          to: '[path][name][ext]'
+          to: '[path][name][ext]',
+          transform(content) {
+            return content
+              .toString()
+              .replaceAll('<%= slug %>', 'wp_theme_starter')
+              .replaceAll('<%= timestamp %>', new Date().getTime());
+          }
         }
       ]
     }),
